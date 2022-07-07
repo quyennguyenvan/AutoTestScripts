@@ -7,13 +7,24 @@ declare COMPLIANCE_COMMIT_ID=f0bd216
 
 declare OTBR_SERVICES_NAME=otbr
 declare OTBR_AGENT_SERVICES="otbr-agent.service"
-
+declare LINES="=============================================================================="
 #running the fix missing apt_pgk and update
 
+echo $LINES
+echo "AUTOMATION TESTING IMG AND OTBR TOOLS"
+echo $LINES
+
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
-    echo "services is actived"
+    echo $LINES
+    echo "OTBR services is actived"
+    echo $LINES
+
 else
+    echo $LINES
+    echo "OTBR service not available"
     echo "install depends package"
+    echo $LINES
+
     sudo apt-get remove python3-apt -y
     sudo apt-get install python3-apt -y
     sudo apt autoremove -y
@@ -41,6 +52,7 @@ else
     sudo systemctl start otbr-web
 fi
 
+echo $LINES
 echo "trying create the form network"
 
 curl 'http://localhost/form_network' \
