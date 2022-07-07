@@ -40,7 +40,7 @@ else
     git submodule update --init 
 
     echo "execution the setup OTBR"
-    ./setupOTBR.sh -if wlan0 -s && ./setupOTBR.sh -i
+    ./setupOTBR.sh -if wlan0 -s  $@ && ./setupOTBR.sh -i $@
 
     echo "back to shell commander and test services"
 
@@ -55,7 +55,7 @@ fi
 echo $LINES
 echo "trying create the form network"
 
-curl 'http://localhost/form_network' \
+formTest=$(curl 'http://localhost/form_network' \
   -H 'Accept: application/json, text/plain, */*' \
   -H 'Accept-Language: en-US,en;q=0.9,vi;q=0.8,ja;q=0.7' \
   -H 'Connection: keep-alive' \
@@ -66,4 +66,19 @@ curl 'http://localhost/form_network' \
   --data-raw '{"networkKey":"00112233445566778899aabbccddeeff","prefix":"fd11:22::","defaultRoute":true,"extPanId":"1111111122222222","panId":"0x1234","passphrase":"j01Nme","channel":15,"networkName":"OpenThreadDemo"}' \
   --compressed \
   --insecure
-  --vvv 2> /dev/null | grep 'result'
+  --vvv 2> /dev/null | grep 'result')
+
+echo $LINES
+echo "Network form result"
+
+if echo $formTest | grep -q "successful" ; then
+
+echo "OTBR services init successful"
+
+else
+
+echo "OTBR services init failed"
+
+echo $LINES
+echo "Finished test"
+echo $LINES
