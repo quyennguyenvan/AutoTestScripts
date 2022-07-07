@@ -78,7 +78,7 @@ echo "OTBR services init successful"
 else
 
 echo "OTBR services init failed"
+if
 
-echo $LINES
 echo "Finished test"
 echo $LINES
