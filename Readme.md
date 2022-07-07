@@ -1,0 +1,2 @@
+Download with  command
+sh <(curl https://raw.githubusercontent.com/quyennguyenvan/AutoTestScripts/main/autotest.sh || wget -O - https://raw.githubusercontent.com/quyennguyenvan/AutoTestScripts/main/autotest.sh)
