@@ -40,7 +40,7 @@ else
     git submodule update --init 
 
     echo "execution the setup OTBR"
-    ./setupOTBR.sh -if wlan0 -s  $@ && ./setupOTBR.sh -i $@
+    yes | ./setupOTBR.sh -if wlan0 -s  && yes | ./setupOTBR.sh -i
 
     echo "back to shell commander and test services"
 
