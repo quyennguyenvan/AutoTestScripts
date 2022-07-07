@@ -1,0 +1,5 @@
+  -H 'Accept: application/json, text/plain, */*' 
+  -H 'Content-Type: application/json;charset=UTF-8'
+  --data-raw '{"networkKey":"00112233445566778899aabbccddeeff","prefix":"fd11:22::","defaultRoute":true,"extPanId":"1111111122222222","panId":"0x1234","passphrase":"j01Nme","channel":15,"networkName":"OpenThreadDemo"}' 
+  --compressed 
+  --insecure
