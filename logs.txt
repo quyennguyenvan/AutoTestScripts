@@ -1,0 +1,93 @@
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+Server release: DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.5 LTS"
+NAME="Ubuntu"
+VERSION="18.04.5 LTS (Bionic Beaver)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 18.04.5 LTS"
+VERSION_ID="18.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=bionic
+UBUNTU_CODENAME=bionic
+./mattertest.sh: line 2: /output.txt: Permission denied
+==============================================================================
+AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS
+==============================================================================
+==============================================================================
+OTBR service not available
+install depends package
+==============================================================================
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  iso-codes python-apt-common
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  python3-apt
+0 upgraded, 0 newly installed, 1 to remove and 177 not upgraded.
+After this operation, 690 kB disk space will be freed.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 41037 files and directories currently installed.)
+Removing python3-apt (1.6.5ubuntu0.7) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Suggested packages:
+  python3-apt-dbg python-apt-doc
+The following NEW packages will be installed:
+  python3-apt
+0 upgraded, 1 newly installed, 0 to remove and 177 not upgraded.
+Need to get 0 B/149 kB of archives.
+After this operation, 690 kB of additional disk space will be used.
+Selecting previously unselected package python3-apt.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 41012 files and directories currently installed.)
+Preparing to unpack .../python3-apt_1.6.5ubuntu0.7_amd64.deb ...
+Unpacking python3-apt (1.6.5ubuntu0.7) ...
+Setting up python3-apt (1.6.5ubuntu0.7) ...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 0 to remove and 177 not upgraded.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+git is already the newest version (1:2.17.1-1ubuntu0.11).
+0 upgraded, 0 newly installed, 0 to remove and 177 not upgraded.
+otbr services is not found or exists
+access to otbr sources code to check and install manual
+checkout source code to vailid commitID
+fatal: cannot change to '/home/quyennv/ot-br-posix': No such file or directory
+execution the setup OTBR
+./mattertest.sh: line 45: ./setupOTBR.sh: No such file or directory
+back to shell commander and test services
+enable the services of otbr
+Failed to enable unit, unit otbr-agent.service does not exist.
+System has not been booted with systemd as init system (PID 1). Can't operate.
+Failed to enable unit, unit otbr-web.service does not exist.
+System has not been booted with systemd as init system (PID 1). Can't operate.
+==============================================================================
+trying create the form network
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 80: Connection refused
+==============================================================================
+Network form result
+OTBR services init failed
+Finished test
+==============================================================================

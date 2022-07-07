@@ -1,3 +1,7 @@
+#!/bin/bash
+touch logs.txt
+chmod 755 logs.txt
+exec > logs.txt 2>&1
 OUTPUT=$(cat /etc/*release)
 if echo $OUTPUT | grep -q "Ubuntu 18.04" ; then
     apt install -y -qq wget curl

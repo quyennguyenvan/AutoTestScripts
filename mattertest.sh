@@ -1,4 +1,6 @@
 #!/bin/bash
+exec > logs.txt 2>&1
+
 OTBR_WRKSPC="$HOME/ot-br-posix"
 
 declare OTBR_AGENT_ENABLED=enabled
@@ -11,7 +13,7 @@ declare LINES="=================================================================
 #running the fix missing apt_pgk and update
 
 echo $LINES
-echo "AUTOMATION TESTING IMG AND OTBR TOOLS"
+echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
 echo $LINES
 
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
