@@ -1,7 +1,7 @@
 #!/bin/bash
 exec > logs.txt 2>&1
 
-OTBR_WRKSPC="$HOME/ot-br-posix"
+OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 
 declare OTBR_AGENT_ENABLED=enabled
 declare OTBR_WEB_ENABLED=enabled

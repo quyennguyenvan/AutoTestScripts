@@ -83,12 +83,6 @@ OTBR services init failed
 Sending report to notification hub
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   301  100   162  100   139    327    280 --:--:-- --:--:-- --:--:--   608
-<html>
-<head><title>503 Service Temporarily Unavailable</title></head>
-<body>
-<center><h1>503 Service Temporarily Unavailable</h1></center>
-</body>
-</html>
-Finished test
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   139    0     0  100   139      0    104  0:00:01  0:00:01 --:--:--   104100   188  100    49  100   139     32     91  0:00:01  0:00:01 --:--:--   123
+{"Code": 0, "Message": "Successed", "Data": "OK"}Finished test
 
