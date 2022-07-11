@@ -1,23 +1,17 @@
-./mattertest.sh: 6: ./mattertest.sh: declare: not found
-./mattertest.sh: 7: ./mattertest.sh: declare: not found
-./mattertest.sh: 8: ./mattertest.sh: declare: not found
-./mattertest.sh: 10: ./mattertest.sh: declare: not found
-./mattertest.sh: 11: ./mattertest.sh: declare: not found
-./mattertest.sh: 12: ./mattertest.sh: declare: not found
-
+==============================================================================
 AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS
-
-
+==============================================================================
+==============================================================================
 Trying enable services OTBR
 Failed to enable unit, unit otbr-agent.service does not exist.
 System has not been booted with systemd as init system (PID 1). Can't operate.
 Failed to enable unit, unit otbr-web.service does not exist.
 System has not been booted with systemd as init system (PID 1). Can't operate.
-
-
+==============================================================================
+==============================================================================
 OTBR service not available
 install depends package
-
+==============================================================================
 Reading package lists...
 Building dependency tree...
 Reading state information...
@@ -63,26 +57,32 @@ git is already the newest version (1:2.17.1-1ubuntu0.11).
 otbr services is not found or exists
 access to otbr sources code to check and install manual
 checkout source code to vailid commitID
-fatal: cannot change to '/home/quyennv/ot-br-posix': No such file or directory
+fatal: cannot change to '/home/ubuntu/ot-br-posix': No such file or directory
 execution the setup OTBR
-./mattertest.sh: 53: ./mattertest.sh: ./setupOTBR.sh: not found
+./mattertest.sh: line 68: ./setupOTBR.sh: No such file or directory
 back to shell commander and test services
 enable the services of otbr
 Failed to enable unit, unit otbr-agent.service does not exist.
 System has not been booted with systemd as init system (PID 1). Can't operate.
 Failed to enable unit, unit otbr-web.service does not exist.
 System has not been booted with systemd as init system (PID 1). Can't operate.
-
+==============================================================================
 trying create the form network
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 80: Connection refused
-
+==============================================================================
 Network form result
 OTBR services init failed
 Sending report to notification hub
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   139    0     0  100   139      0    104  0:00:01  0:00:01 --:--:--   104100   188  100    49  100   139     32     91  0:00:01  0:00:01 --:--:--   123
-{"Code": 0, "Message": "Successed", "Data": "OK"}Finished test
-
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   287  100   167  100   120    281    202 --:--:-- --:--:-- --:--:--   483
+<!doctype html>
+<html lang=en>
+<title>400 Bad Request</title>
+<h1>Bad Request</h1>
+<p>The browser (or proxy) sent a request that this server could not understand.</p>
+curl: (3) [globbing] unmatched close brace/bracket in column 7
+Finished test
+==============================================================================

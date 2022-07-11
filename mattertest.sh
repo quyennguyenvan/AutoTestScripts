@@ -12,6 +12,21 @@ declare OTBR_AGENT_SERVICES="otbr-agent.service"
 declare LINES="=============================================================================="
 #running the fix missing apt_pgk and update
 
+#create the fucntion
+function_name () {
+  curl --location --request POST 'notihub-1610877711.us-west-2.elb.amazonaws.com/v1/notifications' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "endpoint" : "teams",
+        "body": {
+            "title": "Image Testing Report",
+            "message" : "Running testing in phase"
+        }
+    }'
+}
+
+#main function
+
 echo $LINES
 echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
 echo $LINES
@@ -102,7 +117,7 @@ curl --location --request POST 'notihub-1610877711.us-west-2.elb.amazonaws.com/v
     "endpoint" : "teams",
     "body": {
         "title": "Image Testing Report",
-        "message" : "Test with result $formTest"
+        "message" : "Test with result' $formTest '"
     }
 }'
 echo "Finished test"
