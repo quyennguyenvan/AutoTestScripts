@@ -16,6 +16,14 @@ echo $LINES
 echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
 echo $LINES
 
+echo $LINES
+echo "Trying enable services OTBR"
+sudo systemctl enable otbr-agent
+sudo systemctl start otbr-agent
+sudo systemctl enable otbr-web
+sudo systemctl start otbr-web
+echo $LINES
+
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
     echo $LINES
     echo "OTBR services is actived"
@@ -50,7 +58,7 @@ else
 
     sudo systemctl enable otbr-agent
     sudo systemctl start otbr-agent
-    sudo systemctl enable  otbr-web
+    sudo systemctl enable otbr-web
     sudo systemctl start otbr-web
 fi
 
@@ -85,5 +93,18 @@ echo "OTBR services init failed"
 
 fi
 
+
+echo "Sending report to notification hub"
+
+curl --location --request POST 'notihub-1610877711.us-west-2.elb.amazonaws.com/v1/notifications' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "endpoint" : "teams",
+    "body": {
+        "title": "Image Testing Report",
+        "message" : "Test with result $formTest"
+    }
+}'
 echo "Finished test"
+
 echo $LINES
