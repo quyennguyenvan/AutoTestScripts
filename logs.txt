@@ -1,15 +1,24 @@
-==============================================================================
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   101    0     0  100   101      0     81  0:00:01  0:00:01 --:--:--    81100   150  100    49  100   101     24     51  0:00:02  0:00:01  0:00:01    75100   150  100    49  100   101     24     50  0:00:02  0:00:01  0:00:01    75
+{"Code": 0, "Message": "Successed", "Data": "OK"}==============================================================================
 AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS
 ==============================================================================
 ==============================================================================
 Trying enable services OTBR
-Failed to enable unit, unit otbr-agent.service does not exist.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   115    0     0  100   115      0     91  0:00:01  0:00:01 --:--:--    91100   115    0     0  100   115      0     50  0:00:02  0:00:02 --:--:--    50100   164  100    49  100   115     19     46  0:00:02  0:00:02 --:--:--    65
+{"Code": 0, "Message": "Successed", "Data": "OK"}Failed to enable unit, unit otbr-agent.service does not exist.
 System has not been booted with systemd as init system (PID 1). Can't operate.
 Failed to enable unit, unit otbr-web.service does not exist.
 System has not been booted with systemd as init system (PID 1). Can't operate.
 ==============================================================================
 ==============================================================================
-OTBR service not available
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   143    0     0  100   143      0    115  0:00:01  0:00:01 --:--:--   115100   192  100    49  100   143     25     73  0:00:01  0:00:01 --:--:--    99100   192  100    49  100   143     25     73  0:00:01  0:00:01 --:--:--    98
+{"Code": 0, "Message": "Successed", "Data": "OK"}OTBR service not available
 install depends package
 ==============================================================================
 Reading package lists...
@@ -54,15 +63,22 @@ Building dependency tree...
 Reading state information...
 git is already the newest version (1:2.17.1-1ubuntu0.11).
 0 upgraded, 0 newly installed, 0 to remove and 192 not upgraded.
-otbr services is not found or exists
-access to otbr sources code to check and install manual
 checkout source code to vailid commitID
-fatal: cannot change to '/home/ubuntu/ot-br-posix': No such file or directory
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   127    0     0  100   127      0    101  0:00:01  0:00:01 --:--:--   101100   176  100    49  100   127     25     66  0:00:01  0:00:01 --:--:--    92100   176  100    49  100   127     25     66  0:00:01  0:00:01 --:--:--    91
+{"Code": 0, "Message": "Successed", "Data": "OK"}fatal: cannot change to '/home/ubuntu/ot-br-posix': No such file or directory
 execution the setup OTBR
-./mattertest.sh: line 68: ./setupOTBR.sh: No such file or directory
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   112    0     0  100   112      0     89  0:00:01  0:00:01 --:--:--    89100   161  100    49  100   112     23     54  0:00:02  0:00:02 --:--:--    78100   161  100    49  100   112     23     54  0:00:02  0:00:02 --:--:--    78
+{"Code": 0, "Message": "Successed", "Data": "OK"}./mattertest.sh: line 67: ./setupOTBR.sh: No such file or directory
 back to shell commander and test services
 enable the services of otbr
-Failed to enable unit, unit otbr-agent.service does not exist.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   138    0     0  100   138      0    110  0:00:01  0:00:01 --:--:--   110100   187  100    49  100   138     26     73  0:00:01  0:00:01 --:--:--    99100   187  100    49  100   138     25     72  0:00:01  0:00:01 --:--:--    98
+{"Code": 0, "Message": "Successed", "Data": "OK"}Failed to enable unit, unit otbr-agent.service does not exist.
 System has not been booted with systemd as init system (PID 1). Can't operate.
 Failed to enable unit, unit otbr-web.service does not exist.
 System has not been booted with systemd as init system (PID 1). Can't operate.
@@ -70,19 +86,18 @@ System has not been booted with systemd as init system (PID 1). Can't operate.
 trying create the form network
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   118    0     0  100   118      0     94  0:00:01  0:00:01 --:--:--    94100   167  100    49  100   118     27     65  0:00:01  0:00:01 --:--:--    92100   167  100    49  100   118     26     64  0:00:01  0:00:01 --:--:--    91
+{"Code": 0, "Message": "Successed", "Data": "OK"}  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (7) Failed to connect to localhost port 80: Connection refused
 ==============================================================================
 Network form result
 OTBR services init failed
-Sending report to notification hub
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   287  100   167  100   120    281    202 --:--:-- --:--:-- --:--:--   483
-<!doctype html>
-<html lang=en>
-<title>400 Bad Request</title>
-<h1>Bad Request</h1>
-<p>The browser (or proxy) sent a request that this server could not understand.</p>
-curl: (3) [globbing] unmatched close brace/bracket in column 7
-Finished test
-==============================================================================
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   113    0     0  100   113      0     88  0:00:01  0:00:01 --:--:--    88100   162  100    49  100   113     26     60  0:00:01  0:00:01 --:--:--    86100   162  100    49  100   113     25     59  0:00:01  0:00:01 --:--:--    85
+{"Code": 0, "Message": "Successed", "Data": "OK"}Finished test
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   101    0     0  100   101      0     80  0:00:01  0:00:01 --:--:--    80100   150  100    49  100   101     23     48  0:00:02  0:00:02 --:--:--    71100   150  100    49  100   101     23     48  0:00:02  0:00:02 --:--:--    71
+{"Code": 0, "Message": "Successed", "Data": "OK"}==============================================================================

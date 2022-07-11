@@ -13,26 +13,23 @@ declare LINES="=================================================================
 #running the fix missing apt_pgk and update
 
 #create the fucntion
-function_name () {
-  curl --location --request POST 'notihub-1610877711.us-west-2.elb.amazonaws.com/v1/notifications' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "endpoint" : "teams",
-        "body": {
-            "title": "Image Testing Report",
-            "message" : "Running testing in phase"
-        }
-    }'
+notif () {
+    msg=$1
+    curl --location --request POST 'notihub-1610877711.us-west-2.elb.amazonaws.com/v1/notifications' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{  "endpoint" : "teams", "body": {  "title": "Image Testing Report",  "message" : "'"$msg"'" } }'
+
 }
-
-#main function
-
+#main function "connection.uri":"'"$1"'",
+notif 'starting test'
 echo $LINES
 echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
 echo $LINES
 
 echo $LINES
 echo "Trying enable services OTBR"
+notif 'Trying enable services OTBR'
+
 sudo systemctl enable otbr-agent
 sudo systemctl start otbr-agent
 sudo systemctl enable otbr-web
@@ -42,10 +39,12 @@ echo $LINES
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
     echo $LINES
     echo "OTBR services is actived"
+    notif 'OTBR services is actived'
     echo $LINES
 
 else
     echo $LINES
+    notif 'OTBR service not available\nInstall the depends package'
     echo "OTBR service not available"
     echo "install depends package"
     echo $LINES
@@ -55,21 +54,22 @@ else
     sudo apt autoremove -y
     sudo apt install git -y
 
-    echo "otbr services is not found or exists"
-
-    echo "access to otbr sources code to check and install manual"
-
     #checkout source code
     echo "checkout source code to vailid commitID"
+    notif 'checkout source code to vailid commitID'
+
     git -C $OTBR_WRKSPC checkout $COMPLIANCE_COMMIT_ID
     git submodule update --init 
 
     echo "execution the setup OTBR"
+    notif 'execution the setup OTBR'
+
     yes | ./setupOTBR.sh -if wlan0 -s  && yes | ./setupOTBR.sh -i
 
     echo "back to shell commander and test services"
 
     echo "enable the services of otbr"
+    notif 'Finished setup\nTrying enable the services of otbr'
 
     sudo systemctl enable otbr-agent
     sudo systemctl start otbr-agent
@@ -79,6 +79,7 @@ fi
 
 echo $LINES
 echo "trying create the form network"
+notif 'Trying create the form network'
 
 formTest=$(curl 'http://localhost/form_network' \
   -H 'Accept: application/json, text/plain, */*' \
@@ -100,26 +101,17 @@ echo "Network form result"
 
 if echo $formTest | grep -q "successful" ; then
 
-echo "OTBR services init successful"
+    echo "OTBR services init successful"
+    notif 'OTBR services init successful'
 
 else
 
-echo "OTBR services init failed"
+    echo "OTBR services init failed"
+    notif 'OTBR services init failed'
 
 fi
 
-
-echo "Sending report to notification hub"
-
-curl --location --request POST 'notihub-1610877711.us-west-2.elb.amazonaws.com/v1/notifications' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "endpoint" : "teams",
-    "body": {
-        "title": "Image Testing Report",
-        "message" : "Test with result' $formTest '"
-    }
-}'
 echo "Finished test"
+notif 'Finished test'
 
 echo $LINES
