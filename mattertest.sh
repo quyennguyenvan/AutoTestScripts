@@ -20,6 +20,18 @@ notif () {
         --data-raw '{  "endpoint" : "teams", "body": {  "title": "Image Testing Report",  "message" : "'"$msg"'" } }'
 
 }
+
+rcpcheckf(){
+    echo "Device RCP checking"
+    if  ls /dev/ttyACM0 2> /dev/null | grep "ACM0"; then
+        echo "RCP device found"
+        notif "RCP device found"
+    else 
+        echo "RCP device not found"
+        notif "RCP device not found"
+
+    fi
+}
 #main function "connection.uri":"'"$1"'",
 notif 'starting test'
 echo $LINES
@@ -27,13 +39,10 @@ echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
 echo $LINES
 
 echo $LINES
-echo "Trying enable services OTBR"
-notif 'Trying enable services OTBR'
+echo "Device checking"
 
-sudo systemctl enable otbr-agent
-sudo systemctl start otbr-agent
-sudo systemctl enable otbr-web
-sudo systemctl start otbr-web
+rcpcheckf 
+
 echo $LINES
 
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
@@ -77,14 +86,9 @@ if echo $formTest | grep -q "successful" ; then
     notif 'OTBR services init successful'
 
 else
-    
+
     echo "OTBR services init failed"
     notif 'OTBR services init failed'
-
-    if [ ! ls /dev/ttyACM0 2> /dev/null | grep "ACM0" ]; then
-        echo "RCP device missing"
-        notif "RCP device missing"
-    fi 
 fi
 
 echo "Finished test"
