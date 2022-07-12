@@ -1,4 +1,10 @@
 #!/bin/bash
+if grep "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
+then
+    echo
+else
+    sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+fi
 #exec > logstest.txt 2>&1
 
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"

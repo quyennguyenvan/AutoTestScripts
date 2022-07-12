@@ -36,7 +36,16 @@ chmod 755 mattertest.sh
 touch logstest.txt 
 chmod 755 logstest.txt
 exec > logstest.txt 2>&1
-sudo echo "@reboot echo 'hello-world' "
-sudo echo "@reboot sh /home/ubuntu/scripts/mattertest.sh  $@" >> /etc/cron.d/mattertest
+cat << EOF > /etc/systemd/system/mattertest
+[Unit]
+Description=Testing otbr services.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/ubuntu/scripts/mattertest.sh
+
+[Install]
+WantedBy=multi-user.target
+EOF
 sudo reboot now
 
