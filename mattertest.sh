@@ -1,11 +1,5 @@
 #!/bin/bash
-if grep "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
-then
-    echo
-else
-    sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
-fi
-exec > logs.txt 2>&1
+exec > logstest.txt 2>&1
 
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 
@@ -21,22 +15,26 @@ declare LINES="=================================================================
 #create the fucntion
 notif () {
     msg=$1
-    curl --location --request POST 'notihub-1610877711.us-west-2.elb.amazonaws.com/v1/notifications' \
+    curl --location --request POST 'http://notihub-1610877711.us-west-2.elb.amazonaws.com/v1/notifications' \
         --header 'Content-Type: application/json' \
         --data-raw '{  "endpoint" : "teams", "body": {  "title": "Image Testing Report",  "message" : "'"$msg"'" } }'
 
 }
-
-#
-
 #main function "connection.uri":"'"$1"'",
 notif 'starting test'
 echo $LINES
 echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
 echo $LINES
 
-echo "Checking environment OTBR"
-notif "Checking environment OTBR"
+echo $LINES
+echo "Trying enable services OTBR"
+notif 'Trying enable services OTBR'
+
+sudo systemctl enable otbr-agent
+sudo systemctl start otbr-agent
+sudo systemctl enable otbr-web
+sudo systemctl start otbr-web
+echo $LINES
 
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
     echo $LINES
@@ -49,34 +47,6 @@ else
     notif 'OTBR service not available'
     echo "OTBR service not available"
     echo $LINES
-
-    # sudo apt-get remove python3-apt -y
-    # sudo apt-get install python3-apt -y
-    # sudo apt autoremove -y
-    # sudo apt install git -y
-
-    #checkout source code
-    # echo "checkout source code to vailid commitID"
-    # notif 'checkout source code to vailid commitID'
-
-    # git -C $OTBR_WRKSPC checkout $COMPLIANCE_COMMIT_ID
-    # git submodule update --init 
-
-    # echo "execution the setup OTBR"
-    # notif 'execution the setup OTBR'
-
-    # ./setupOTBR.sh -if wlan0 -s  && ./setupOTBR.sh -i
-
-    # echo "back to shell commander and test services"
-
-    # echo "enable the services of otbr"
-    # notif 'Finished setup\nTrying enable the services of otbr'
-
-    # sudo systemctl enable otbr-agent
-    # sudo systemctl start otbr-agent
-    # sudo systemctl enable otbr-web
-    # sudo systemctl start otbr-web
-    
 fi
 
 echo $LINES
