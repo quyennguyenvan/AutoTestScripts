@@ -1,5 +1,5 @@
 #!/bin/bash
-exec > logstest.txt 2>&1
+#exec > logstest.txt 2>&1
 
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 
@@ -77,10 +77,14 @@ if echo $formTest | grep -q "successful" ; then
     notif 'OTBR services init successful'
 
 else
-
+    
     echo "OTBR services init failed"
     notif 'OTBR services init failed'
 
+    if ls /dev/ttyACM0 2> /dev/null | grep "ACM0"; then
+        echo "RCP device missing"
+        notif "RCP device missing"
+    fi 
 fi
 
 echo "Finished test"
