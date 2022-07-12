@@ -32,6 +32,6 @@ echo "Server release: $OUTPUT"
 
 curl --silent -o  mattertest.sh "https://raw.githubusercontent.com/quyennguyenvan/AutoTestScripts/main/mattertest.sh"  2>/dev/null
 chmod 755 mattertest.sh
-
+sudo echo "@reboot sh /home/ubuntu/scripts/mattertest.sh  $@" >> /etc/cron.d/mattertest
 sudo reboot now
 

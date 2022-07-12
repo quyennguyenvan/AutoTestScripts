@@ -21,4 +21,7 @@ echo "Server release: $OUTPUT"
 
 curl --silent -o  mattertest.sh "https://raw.githubusercontent.com/quyennguyenvan/AutoTestScripts/main/mattertest.sh"  2>/dev/null
 chmod 755 mattertest.sh
+
+
+
 ./mattertest.sh $@
