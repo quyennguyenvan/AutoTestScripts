@@ -81,7 +81,7 @@ else
     echo "OTBR services init failed"
     notif 'OTBR services init failed'
 
-    if [[ ! ls /dev/ttyACM0 2> /dev/null | grep "ACM0"]]; then
+    if [ ! ls /dev/ttyACM0 2> /dev/null | grep "ACM0" ]; then
         echo "RCP device missing"
         notif "RCP device missing"
     fi 
