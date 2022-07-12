@@ -5,6 +5,17 @@ then
 else
     sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 fi
+
+sudo apt-get remove python3-apt -y
+sudo apt-get install python3-apt -y
+sudo apt autoremove -y
+sudo apt install git -y
+
+./setupOTBR.sh -if wlan0 -s &&
+./setupOTBR.sh -i &&
+rm -f /home/$(whoami)/.cache/tools/images/* /tmp/raspbian-ubuntu/*
+
+#setup for automation test
 touch logs.txt
 chmod 755 logs.txt
 exec > logs.txt 2>&1
@@ -21,4 +32,6 @@ echo "Server release: $OUTPUT"
 
 curl --silent -o  mattertest.sh "https://raw.githubusercontent.com/quyennguyenvan/AutoTestScripts/main/mattertest.sh"  2>/dev/null
 chmod 755 mattertest.sh
-./mattertest.sh $@
+
+sudo reboot now
+
