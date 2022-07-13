@@ -8,12 +8,8 @@ fi
 #exec > logstest.txt 2>&1
 
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
-
-declare OTBR_AGENT_ENABLED=enabled
-declare OTBR_WEB_ENABLED=enabled
 declare COMPLIANCE_COMMIT_ID=f0bd216
 
-declare OTBR_SERVICES_NAME=otbr
 declare OTBR_AGENT_SERVICES="otbr-agent.service"
 declare LINES="=============================================================================="
 #running the fix missing apt_pgk and update
@@ -38,35 +34,37 @@ rcpcheckf(){
 
     fi
 }
+
+msg(){
+
+    message=$1
+    echo $LINES
+    notif "$message"
+    echo "$message"
+    echo $LINES
+
+}
+
 #main function "connection.uri":"'"$1"'",
-notif 'starting test'
+msg 'starting test'
 echo $LINES
 echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
 echo $LINES
 
-echo $LINES
-echo "Device checking"
 
+echo "Device checking"
 rcpcheckf 
 
 echo $LINES
 
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
-    echo $LINES
-    echo "OTBR services is actived"
-    notif 'OTBR services is actived'
-    echo $LINES
+    msg "OTBR services is actived"
 
 else
-    echo $LINES
-    notif 'OTBR service not available'
-    echo "OTBR service not available"
-    echo $LINES
+    msg "OTBR service not available"
 fi
 
-echo $LINES
-echo "trying create the form network"
-notif 'Trying create the form network'
+msg "trying create the form network"
 
 formTest=$(curl 'http://localhost/form_network' \
   -H 'Accept: application/json, text/plain, */*' \
@@ -82,22 +80,15 @@ formTest=$(curl 'http://localhost/form_network' \
   --vvv 2> /dev/null | grep 'result')
 
 
-echo $LINES
-
 echo "Network form result"
 
 if echo $formTest | grep -q "successful" ; then
 
-    echo "OTBR services init successful"
-    notif 'OTBR services init successful'
+    msg "OTBR services init successful"
 
 else
 
-    echo "OTBR services init failed"
-    notif 'OTBR services init failed'
+    msg "OTBR services init failed"
 fi
 
-echo "Finished test"
-notif 'Finished test'
-
-echo $LINES
+msg "Finished test"
