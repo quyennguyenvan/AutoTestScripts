@@ -40,6 +40,7 @@ msg(){
     message=$1
     echo $LINES
     notif "$message"
+    echo "\n"
     echo "$message"
     echo $LINES
 
