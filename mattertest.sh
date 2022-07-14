@@ -19,7 +19,6 @@ notif () {
 }
 
 rcpcheckf(){
-    echo "Device RCP checking"
     if  ls /dev/ttyACM0 2> /dev/null | grep "ACM0"; then
         echo "RCP device found"
         notif "RCP device found"
@@ -96,8 +95,7 @@ if echo $formTest | grep -q "successful" ; then
     msg "Form network for OTBR services init successful"
     
     #print out the dataset of otbr
-    dataset=$(sudo ot-ctl dataset active -x)
-    msg "The dataset otbr network: $dataset"
+    msg  "The dataset otbr network: $(sudo ot-ctl dataset active -x)"
 
 else
     msg "Form network for OTBR services init failed"

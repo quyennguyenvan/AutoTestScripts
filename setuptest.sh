@@ -36,7 +36,7 @@ chmod +x mattertest.sh
 # sudo crontab -l > mattertest_job 
 # echo "@reboot /home/ubuntu/scripts/mattertest.sh" >> mattertest_job
 # sudo crontab mattertest_job
-sudo echo "@reboot /home/ubuntu/scripts/mattertest.s" > /etc/cron.d/mattertest_job_test
+sudo echo "@reboot /home/ubuntu/scripts/mattertest.sh" > /etc/cron.d/mattertest_job_test
 sudo chmod 600 /etc/cron.d/mattertest_job_test
 
 #Trigger first run
