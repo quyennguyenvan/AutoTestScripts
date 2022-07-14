@@ -99,8 +99,8 @@ if echo $formTest | grep -q "successful" ; then
     msg "OTBR services init successful"
     
     #print out the dataset of otbr
-    datset=$(sudo ot-ctl dataset active -x)
-    msg "dataset otbr network ${dataset}"
+    dataset=$(sudo ot-ctl dataset active -x)
+    msg "dataset otbr network: ${dataset}"
 
 else
     msg "OTBR services init failed"
