@@ -13,7 +13,7 @@ HOSTNAME=$(hostname)
 declare COMPLIANCE_COMMIT_ID=f0bd216
 
 declare OTBR_AGENT_SERVICES="otbr-agent.service"
-declare LINES="=============================================================================="
+declare LINES="==============================================="
 #running the fix missing apt_pgk and update
 
 #create the fucntion
@@ -64,6 +64,7 @@ msg(){
 
 echo $LINES
 echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
+echo "HOSTNAME: ${HOSTNAME}"
 echo $LINES
 
 echo "RCP device checking"
