@@ -72,7 +72,7 @@ rcpcheckf
 
 #testing chiptool
 msg 'Chiptool ENV validation'
-envCheck "source connectedhomeip/scripts/activate.sh" "good" "Chiptool - env"
+envCheck "source ${CHIPTOOL_WRKSPC}/scripts/activate.sh" "good" "Chiptool - env"
 
 msg 'OTBR services validation'
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
