@@ -7,10 +7,13 @@ else
 fi
 
 #env setup
+
+echo "Starting install requriement env needed"
 sudo apt-get remove python3-apt -y
 sudo apt-get install python3-apt -y
 sudo apt autoremove -y
 
+echo "Finished install requriement env needed"
 touch logs.txt
 chmod 755 logs.txt
 exec > logs.txt 2>&1

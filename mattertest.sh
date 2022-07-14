@@ -8,6 +8,7 @@ fi
 #exec > logstest.txt 2>&1
 
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
+CHIPTOOL_WRKSPC="/home/ubuntu/connectedhomeip"
 declare COMPLIANCE_COMMIT_ID=f0bd216
 
 declare OTBR_AGENT_SERVICES="otbr-agent.service"
@@ -35,6 +36,19 @@ rcpcheckf(){
     fi
 }
 
+envCheck(){
+    command=$1
+    requirecheck=$2
+    message=$3
+    
+    if $command 2> /dev/null | grep "${requirecheck}"; then
+        msg "${message} sucsscessd"
+
+    else
+        msg "${message} not sucsscessd"
+    fi
+}
+
 msg(){
 
     message=$1
@@ -43,24 +57,22 @@ msg(){
     echo "\n"
     echo "$message"
     echo $LINES
-
 }
 
-#main function "connection.uri":"'"$1"'",
-msg 'starting test'
 echo $LINES
 echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
 echo $LINES
 
-
-echo "Device checking"
+echo "RCP device checking"
 rcpcheckf 
 
-echo $LINES
+#testing chiptool
+msg 'Chiptool ENV validation'
+envCheck "source connectedhomeip/scripts/activate.sh" "good"
+
 
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
     msg "OTBR services is actived"
-
 else
     msg "OTBR service not available"
 fi
@@ -84,11 +96,13 @@ formTest=$(curl 'http://localhost/form_network' \
 echo "Network form result"
 
 if echo $formTest | grep -q "successful" ; then
-
     msg "OTBR services init successful"
+    
+    #print out the dataset of otbr
+    datset=$(sudo ot-ctl dataset active -x)
+    msg "dataset otbr network ${dataset}"
 
 else
-
     msg "OTBR services init failed"
 fi
 
