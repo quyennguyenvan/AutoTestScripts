@@ -9,6 +9,7 @@ fi
 
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 CHIPTOOL_WRKSPC="/home/ubuntu/connectedhomeip"
+HOSTNAME=$(hostname)
 declare COMPLIANCE_COMMIT_ID=f0bd216
 
 declare OTBR_AGENT_SERVICES="otbr-agent.service"
@@ -55,7 +56,7 @@ msg(){
 
     message=$1
     echo $LINES
-    notif "$message"
+    notif "$HOSTNAME - $message"
     echo "\n"
     echo "$message"
     echo $LINES
