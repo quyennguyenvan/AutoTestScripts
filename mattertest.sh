@@ -40,6 +40,8 @@ envCheck(){
     command=$1
     requirecheck=$2
     message=$3
+
+    echo "command validation: ${command}"
     
     if $command 2> /dev/null | grep "${requirecheck}"; then
         msg "${message} sucsscessd"
@@ -68,7 +70,7 @@ rcpcheckf
 
 #testing chiptool
 msg 'Chiptool ENV validation'
-envCheck "source connectedhomeip/scripts/activate.sh" "good"
+envCheck "source connectedhomeip/scripts/activate.sh" "good" "Chiptool - env"
 
 
 if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
