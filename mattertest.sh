@@ -1,17 +1,10 @@
 #!/bin/bash
-if grep "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
-then
-    echo
-else
-    sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
-fi
 #exec > logstest.txt 2>&1
 
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 CHIPTOOL_WRKSPC="/home/ubuntu/connectedhomeip"
 HOSTNAME=$(hostname)
 declare COMPLIANCE_COMMIT_ID=f0bd216
-
 declare OTBR_AGENT_SERVICES="otbr-agent.service"
 declare LINES="==============================================="
 #running the fix missing apt_pgk and update
@@ -81,7 +74,7 @@ else
     msg "OTBR service not available"
 fi
 
-msg "trying create the form network"
+msg "Trying create the form network"
 
 formTest=$(curl 'http://localhost/form_network' \
   -H 'Accept: application/json, text/plain, */*' \
@@ -97,17 +90,17 @@ formTest=$(curl 'http://localhost/form_network' \
   --vvv 2> /dev/null | grep 'result')
 
 
-echo "Network form result"
+echo "Created network form result"
 
 if echo $formTest | grep -q "successful" ; then
-    msg "OTBR services init successful"
+    msg "Form network for OTBR services init successful"
     
     #print out the dataset of otbr
     dataset=$(sudo ot-ctl dataset active -x)
-    msg "dataset otbr network: ${dataset}"
+    msg "The dataset otbr network: $dataset"
 
 else
-    msg "OTBR services init failed"
+    msg "Form network for OTBR services init failed"
 fi
 
 msg "Finished test"
