@@ -63,6 +63,7 @@ echo "RCP device checking"
 rcpcheckf 
 
 #testing chiptool
+#neet to check ?
 msg 'Chiptool ENV validation'
 envCheck "source ${CHIPTOOL_WRKSPC}/scripts/activate.sh" "good" "Chiptool - env"
 
@@ -95,7 +96,7 @@ if echo $formTest | grep -q "successful" ; then
     msg "Form network for OTBR services init successful"
     
     #print out the dataset of otbr
-    msg  "The dataset otbr network: $(sudo ot-ctl dataset active -x)"
+    echo  "The dataset otbr network: $(sudo ot-ctl dataset active -x)"
 
 else
     msg "Form network for OTBR services init failed"

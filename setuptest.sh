@@ -33,11 +33,11 @@ echo "Server release: $OUTPUT"
 #setup crontab after reboot  for mattertest after running firstrun.sh
 curl --silent -o  mattertest.sh "https://raw.githubusercontent.com/quyennguyenvan/AutoTestScripts/main/mattertest.sh"  2>/dev/null
 chmod +x mattertest.sh
-# sudo crontab -l > mattertest_job 
-# echo "@reboot /home/ubuntu/scripts/mattertest.sh" >> mattertest_job
-# sudo crontab mattertest_job
-sudo echo "@reboot /home/ubuntu/scripts/mattertest.sh" > /etc/cron.d/mattertest_job_test
-sudo chmod 600 /etc/cron.d/mattertest_job_test
+sudo crontab -l > mattertest_job 
+echo "@reboot /home/ubuntu/scripts/mattertest.sh" >> mattertest_job
+sudo crontab mattertest_job
+# sudo echo "@reboot /home/ubuntu/scripts/mattertest.sh" > /etc/cron.d/mattertest_job_test
+# sudo chmod 600 /etc/cron.d/mattertest_job_test
 
 #Trigger first run
 ./firstrun.sh $@
