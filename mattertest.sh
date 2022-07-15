@@ -1,6 +1,11 @@
 #!/bin/bash
 #exec > logstest.txt 2>&1
-[[ grep "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers ]] ||  sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+if grep "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
+then
+    echo
+else
+    sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+fi
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 CHIPTOOL_WRKSPC="/home/ubuntu/connectedhomeip"
 HOSTNAME=$(hostname)
@@ -56,7 +61,6 @@ msg 'Chiptool ENV validation'
 envCheck "source ${CHIPTOOL_WRKSPC}/scripts/activate.sh" "good" "Chiptool - env"
 
 msg 'OTBR services validation'
-
 [[ sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active" ]] && msg "OTBR services is actived" ||  msg "OTBR service not available"
 
 msg "Trying create the form network"
@@ -78,9 +82,8 @@ formTest=$(curl 'http://localhost/form_network' \
 echo "Created network form result"
 
 [[ echo $formTest | grep -q "successful" ]] && \
-    msg "Form network for OTBR services init successful" \ 
+    msg "Form network for OTBR services init successful" \
     echo  "The dataset otbr network: $(sudo ot-ctl dataset active -x)" \
-
 || msg "Form network for OTBR services init failed"
 
 msg "Finished test"
