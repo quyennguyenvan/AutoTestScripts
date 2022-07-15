@@ -8,15 +8,14 @@ fi
 
 #env setup
 
-echo "Starting install requriement env needed"
-sudo apt-get remove python3-apt -y
-sudo apt-get install python3-apt -y
-sudo apt autoremove -y
-
-echo "Finished install requriement env needed"
-touch logs.txt
-chmod 755 logs.txt
-exec > logs.txt 2>&1
+# echo "Starting install requriement env needed"
+# sudo apt-get remove python3-apt -y
+# sudo apt-get install python3-apt -y
+# sudo apt autoremove -y
+# echo "Finished install requriement env needed"
+touch logssetup.txt
+chmod 755 logssetup.txt
+exec > logssetup.txt 2>&1
 
 OUTPUT=$(cat /etc/*release)
 
@@ -34,7 +33,7 @@ echo "Server release: $OUTPUT"
 curl --silent -o  mattertest.sh "https://raw.githubusercontent.com/quyennguyenvan/AutoTestScripts/main/mattertest.sh"  2>/dev/null
 chmod +x mattertest.sh
 sudo crontab -l > mattertest_job 
-echo "@reboot sleep 60 && /home/ubuntu/scripts/mattertest.sh" >> mattertest_job
+echo "@reboot sleep 60 && /home/ubuntu/scripts/mattertest.sh" >> mattertest_job 
 sudo crontab mattertest_job
 # sudo echo "@reboot /home/ubuntu/scripts/mattertest.sh" > /etc/cron.d/mattertest_job_test
 # sudo chmod 600 /etc/cron.d/mattertest_job_test

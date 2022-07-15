@@ -1,6 +1,11 @@
 #!/bin/bash
 #exec > logstest.txt 2>&1
-
+if grep "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
+then
+    echo
+else
+    sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+fi
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 CHIPTOOL_WRKSPC="/home/ubuntu/connectedhomeip"
 HOSTNAME=$(hostname)
