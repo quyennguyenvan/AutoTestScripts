@@ -1,11 +1,6 @@
 #!/bin/bash
 #exec > logstest.txt 2>&1
-if grep "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
-then
-    echo
-else
-    sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
-fi
+
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 CHIPTOOL_WRKSPC="/home/ubuntu/connectedhomeip"
 HOSTNAME=$(hostname)
@@ -23,14 +18,15 @@ notif () {
 
 }
 
-msg(){
+rcpcheckf(){
+    if  ls /dev/ttyACM0 2> /dev/null | grep "ACM0"; then
+        echo "RCP device found"
+        notif "RCP device found"
+    else 
+        echo "RCP device not found"
+        notif "RCP device not found"
 
-    message=$1
-    echo $LINES
-    notif "$HOSTNAME - $message"
-    echo "\n"
-    echo "$message"
-    echo $LINES
+    fi
 }
 
 envCheck(){
@@ -40,11 +36,22 @@ envCheck(){
 
     echo "command validation: ${command}"
     
-    [[ $command 2> /dev/null | grep "${requirecheck}" ]] && msg "${message} sucsscessd" || msg "${message} not sucsscessd"
+    if $command 2> /dev/null | grep "${requirecheck}"; then
+        msg "${message} sucsscessd"
+
+    else
+        msg "${message} not sucsscessd"
+    fi
 }
 
-rcpcheckf(){
-    [[ ls /dev/ttyACM0 2> /dev/null | grep "ACM0" ]] && msg "RCP device found" || msg "RCP device not found"
+msg(){
+
+    message=$1
+    echo $LINES
+    notif "$HOSTNAME - $message"
+    echo "\n"
+    echo "$message"
+    echo $LINES
 }
 
 echo $LINES
@@ -61,7 +68,11 @@ msg 'Chiptool ENV validation'
 envCheck "source ${CHIPTOOL_WRKSPC}/scripts/activate.sh" "good" "Chiptool - env"
 
 msg 'OTBR services validation'
-[[ sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active" ]] && msg "OTBR services is actived" ||  msg "OTBR service not available"
+if sudo systemctl status "$OTBR_AGENT_SERVICES" 2> /dev/null | grep "active"; then
+    msg "OTBR services is actived"
+else
+    msg "OTBR service not available"
+fi
 
 msg "Trying create the form network"
 
@@ -81,9 +92,14 @@ formTest=$(curl 'http://localhost/form_network' \
 
 echo "Created network form result"
 
-[[ echo $formTest | grep -q "successful" ]] && \
-    msg "Form network for OTBR services init successful" \
-    echo  "The dataset otbr network: $(sudo ot-ctl dataset active -x)" \
-|| msg "Form network for OTBR services init failed"
+if echo $formTest | grep -q "successful" ; then
+    msg "Form network for OTBR services init successful"
+    
+    #print out the dataset of otbr
+    echo  "The dataset otbr network: $(sudo ot-ctl dataset active -x)"
+
+else
+    msg "Form network for OTBR services init failed"
+fi
 
 msg "Finished test"
