@@ -15,7 +15,8 @@ fi
 # echo "Finished install requriement env needed"
 touch logssetup.txt
 chmod 755 logssetup.txt
-exec > logssetup.txt 2>&1
+# exec > logssetup.txt 2>&1
+exec 3>&1 1>>logssetup.txt 2>&1
 
 OUTPUT=$(cat /etc/*release)
 
