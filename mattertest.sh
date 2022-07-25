@@ -115,7 +115,7 @@ if echo $formTest | grep -q "successful" ; then
     mattertool --dataset "$dataset"
 
     nodeId==$(mattertool -h | grep NODE_ID | tr -dc '0-9')
-
+    echo "NODE ID: ${nodeId}"
     echo "Paring the device"
 
     "${CHIPTOOL_WRKSPC}/out/standalone/chip-tool" pairing ble-thread $nodeId $dataset 20202021 3840
