@@ -70,8 +70,8 @@ rcpcheckf
 
 #grant permission for /tmp/ folder
 
-msg "grant permission (755) for /tmp/ folder"
-sudo chmod 755 /tmp/
+msg "grant permission (x) for /tmp/ folder"
+sudo chmod +x /tmp/
 
 #testing chiptool
 #neet to check ?
@@ -111,14 +111,15 @@ if echo $formTest | grep -q "successful" ; then
     echo  "The dataset otbr network: $dataset"
 
     #setup dataset for mattertool
-    echo "BleThread starting"
-    mattertool --dataset "$dataset"
+    # echo "BleThread starting"
+    # mattertool --dataset "$dataset"
 
-    nodeId==$(mattertool -h | grep NODE_ID | tr -dc '0-9')
-    echo "NODE ID: ${nodeId}"
-    echo "Paring the device"
+    # nodeId==$(mattertool -h | grep NODE_ID | tr -dc '0-9')
+    # echo "NODE ID: ${nodeId}"
 
-    "${CHIPTOOL_WRKSPC}/out/standalone/chip-tool" pairing ble-thread $nodeId $dataset 20202021 3840
+    # echo "Paring the device"
+
+    # sudo "${CHIPTOOL_WRKSPC}/out/standalone/chip-tool" pairing ble-thread $nodeId $dataset 20202021 3840
 
     
 else
