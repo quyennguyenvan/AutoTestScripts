@@ -1,12 +1,18 @@
 #!/bin/bash
 #exec > logstest.txt 2>&1
+if grep "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
+then
+    echo
+else
+    sudo echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+fi
 
 OTBR_WRKSPC="/home/ubuntu/ot-br-posix"
 CHIPTOOL_WRKSPC="/home/ubuntu/connectedhomeip"
 HOSTNAME=$(hostname)
 declare COMPLIANCE_COMMIT_ID=f0bd216
 declare OTBR_AGENT_SERVICES="otbr-agent.service"
-declare LINES="==============================================="
+declare LINES="====================================="
 #running the fix missing apt_pgk and update
 
 #create the fucntion
@@ -55,12 +61,17 @@ msg(){
 }
 
 echo $LINES
-echo "AUTOMATION TESTING IMAGES AND OTBR SERVICES TOOLS"
+echo "AUTOMATION TESTING MATTER"
 echo "HOSTNAME: ${HOSTNAME}"
 echo $LINES
 
 echo "RCP device checking"
 rcpcheckf 
+
+#grant permission for /tmp/ folder
+
+msg "grant permission (755) for /tmp/ folder"
+sudo chmod 755 /tmp/
 
 #testing chiptool
 #neet to check ?
@@ -96,8 +107,20 @@ if echo $formTest | grep -q "successful" ; then
     msg "Form network for OTBR services init successful"
     
     #print out the dataset of otbr
-    echo  "The dataset otbr network: $(sudo ot-ctl dataset active -x)"
+    dataset=$(sudo ot-ctl dataset active -x)
+    echo  "The dataset otbr network: $dataset"
 
+    #setup dataset for mattertool
+    echo "BleThread starting"
+    mattertool --dataset "$dataset"
+
+    nodeId==$(mattertool -h | grep NODE_ID | tr -dc '0-9')
+
+    echo "Paring the device"
+
+    "${CHIPTOOL_WRKSPC}/out/standalone/chip-tool" pairing ble-thread $nodeId $dataset 20202021 3840
+
+    
 else
     msg "Form network for OTBR services init failed"
 fi
